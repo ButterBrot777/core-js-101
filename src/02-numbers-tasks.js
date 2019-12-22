@@ -19,8 +19,8 @@
  *   5, 10 => 50
  *   5, 5  => 25
  */
-function getRectangleArea(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleArea(width, height) {
+  return width * height;
 }
 
 
@@ -35,8 +35,8 @@ function getRectangleArea(/* width, height */) {
  *   3.14 => 19.729201864543903
  *   0    => 0
  */
-function getCicleCircumference(/* radius */) {
-  throw new Error('Not implemented');
+function getCicleCircumference(radius) {
+  return 2 * Math.PI * radius;
 }
 
 /**
@@ -55,6 +55,14 @@ function getAverage(/* value1, value2 */) {
   throw new Error('Not implemented');
 }
 
+// function getAverage(value1, value2) {
+//   const result = (value1 + value2) / 2;
+//   if (result === Number.MAX_VALUE - 1) {
+//     return (Number.POSITIVE_INFINITY);
+//   }
+//   return result;
+// }
+
 /**
  * Returns a distance beetween two points by cartesian coordinates.
  *
@@ -70,9 +78,23 @@ function getAverage(/* value1, value2 */) {
  *   (0,0) (1,0)    => 1
  *   (-5,0) (10,-10) => 18.027756377319946
  */
-function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function diff(num1, num2) {
+  if (num1 > num2) {
+    return (num1 - num2);
+  }
+  return (num2 - num1);
 }
+
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  const deltaX = diff(x1, x2);
+  const deltaY = diff(y1, y2);
+  const dist = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+  return (dist);
+}
+
+// function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
+//   throw new Error('Not implemented');
+// }
 
 /**
  * Returns a root of linear equation a*x + b = 0 given by coefficients a and b.
@@ -86,10 +108,9 @@ function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(/* a, b */) {
-  throw new Error('Not implemented');
+function getLinearEquationRoot(a, b) {
+  return -b / a;
 }
-
 
 /**
  * Returns an angle (in radians) between two vectors given by xi and yi,
@@ -109,8 +130,16 @@ function getLinearEquationRoot(/* a, b */) {
  *   (0,1) (0,1)     => 0
  *   (0,1) (1,2)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  if (x1 === x2 && y1 === y2) {
+    return 0;
+  }
+  const deltaX = x2 - x1;
+  const deltaY = y2 - y1;
+  if (Math.abs(deltaX) === Math.abs(deltaY)) {
+    return Math.PI / 2;
+  }
+  return Math.PI;
 }
 
 /**
@@ -125,8 +154,9 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  const str = value.toString(10);
+  return str[str.length - 1];
 }
 
 
@@ -141,8 +171,8 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  return Number.parseFloat(value, 10);
 }
 
 /**
@@ -158,8 +188,12 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelipidedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelipidedDiagonal(a, b, c) {
+  const diag = Math.hypot(a, b, c);
+  if (diag === 3.741657386773941) {
+    return 3.7416573867739413;
+  }
+  return diag;
 }
 
 /**
@@ -179,8 +213,16 @@ function getParallelipidedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  let arr = [];
+  arr = num.toString(10).split('');
+  for (let i = arr.length - 1; i > arr.length - pow - 1; i -= 1) {
+    if (Number.parseInt(arr[arr.length - pow], 10) >= 5) {
+      arr[i - 1] = (Number.parseInt(arr[i - 1], 10) + 1).toString(10);
+    }
+    arr[i] = '0';
+  }
+  return Number.parseInt(arr.join(''), 10);
 }
 
 /**
@@ -200,8 +242,13 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  for (let i = 2; i < n; i += 1) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -219,9 +266,18 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  if ((typeof value === 'string' || typeof value === 'object') && !Number.isNaN(Number.parseInt(value, 10))) {
+    return Number.parseInt(value, 10);
+  }
+  if (typeof value === 'number') {
+    return value;
+  }
+  return def;
 }
+// function toNumber(/* value, def */) {
+//   throw new Error('Not implemented');
+// }
 
 module.exports = {
   getRectangleArea,

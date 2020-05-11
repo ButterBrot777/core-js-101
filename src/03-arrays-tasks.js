@@ -504,16 +504,12 @@ function sortCitiesArray(arr) {
 function getIdentityMatrix(n) {
   const arr = Array(n).fill(0).map(() => Array(n).fill(0));
   const sum = arr.map((elements, index) => {
-    const result = { ...elements };
+    const result = new Array(n).fill(0);
     result[index] = 1;
     return result;
   });
   return sum;
 }
-// function getIdentityMatrix(/* n */) {
-//   throw new Error('Not implemented');
-// }
-
 
 /**
  * Creates an array of integers from the specified start to end (inclusive)

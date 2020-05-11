@@ -261,17 +261,18 @@ encodeToRot13.lookup = encodeToRot13.input
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
-}
-
-
-// function isString(value) {
-//   if (typeof (value) !== 'string') {
-//     return false;
-//   }
-//   return true;
+// function isString(/* value */) {
+//   throw new Error('Not implemented');
 // }
+
+
+function isString(value) {
+  if (typeof value !== 'string' && value instanceof Object && value.length !== 0) return true;
+  if (typeof value !== 'string') {
+    return false;
+  }
+  return true;
+}
 
 
 /**

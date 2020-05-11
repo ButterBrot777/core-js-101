@@ -18,7 +18,7 @@ describe('02-numbers-tasks', () => {
     assert.equal(5, tasks.getAverage(5, 5));
     assert.equal(5, tasks.getAverage(10, 0));
     assert.equal(0, tasks.getAverage(-3, 3));
-    assert.equal(c, tasks.getAverage(Number.MAX_VALUE - 2, Number.MAX_VALUE));
+    assert.equal(Number.MAX_VALUE - 1, tasks.getAverage(Number.MAX_VALUE - 2, Number.MAX_VALUE));
     assert.equal(Number.MAX_VALUE / 4, tasks.getAverage(Number.MAX_VALUE, -Number.MAX_VALUE / 2));
   });
 

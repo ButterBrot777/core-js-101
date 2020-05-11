@@ -51,17 +51,13 @@ function getCicleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
-}
-
-// function getAverage(value1, value2) {
-//   const result = (value1 + value2) / 2;
-//   if (result === Number.MAX_VALUE - 1) {
-//     return (Number.POSITIVE_INFINITY);
-//   }
-//   return result;
+// function getAverage(/* value1, value2 */) {
+//   throw new Error('Not implemented');
 // }
+
+function getAverage(value1, value2) {
+  return (value1 / 2 + value2 / 2);
+}
 
 /**
  * Returns a distance beetween two points by cartesian coordinates.

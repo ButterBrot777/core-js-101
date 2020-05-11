@@ -125,13 +125,13 @@ function angleBetweenClockHands(date) {
   const arr = newDate.split(' ');
   const arr2 = arr[1].split(':');
   const hours = Number(arr2[0] - 3);
-  // if (hours >= 12) {
-  //   hours -= 12;
-  // }
   const minutes = Number(arr2[1]);
   let result = Math.abs((60 * hours + minutes) / 2 - 6 * minutes);
   if (result > 180) {
     result = 360 - result;
+  }
+  if (result < 0) {
+    result = -result;
   }
   if (result !== 0 && result !== 90 && result !== 180) {
     const rad = result * (Math.PI / 180);
